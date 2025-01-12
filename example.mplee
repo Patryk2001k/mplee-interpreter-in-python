@@ -1,0 +1,19 @@
+fun sort(elements)
+    var return_table = []
+	var elements_copy = elements
+
+	for i = 0 to len(elements_copy) then
+		var x = max(elements_copy)
+		append(return_table, x / 1)
+		elements_copy - x / 0
+	end
+	
+	return return_table
+end
+
+var test_table = [1, 5, 1, 2, 6, 4, 7]
+
+var sorted_table = sort(test_table)
+
+show(sorted_table)
+

@@ -1,0 +1,33 @@
+#for expression and
+
+for i = 0 to 10 then
+    if i == 5 then var x = 5 
+
+#while
+
+var i = 0
+while i < 5 then
+   var i = i + 1 
+end
+
+#array operations 
+
+var a = [5,4,3,2,1]
+var q = a / 0 #here we take element which is in index 0 it will be 5 here
+var w = a + 5 # result = [5,4,3,2,1,5]
+a - 0 #we pulling from array, array after pull = [4,3,2,1,5]
+a * [1,2,3] = [4,3,2,1,5,1,2,3]
+
+#function
+
+fun testf(element)
+    show(element)
+end
+
+testf(10)
+
+#result will be like print(10)
+
+# list of builtin functions
+
+

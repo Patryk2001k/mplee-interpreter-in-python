@@ -1,0 +1,8 @@
+
+Python is in version 3.13.1
+
+I have installed python packages:
+- Numpy
+- Cython
+
+
