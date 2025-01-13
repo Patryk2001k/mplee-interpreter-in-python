@@ -414,7 +414,7 @@ class Parser:
             res.register_advancement()
             self.advance()
             self.advance()
-            if tokens[token_position_idx + 5].type == TT_INT:
+            if tokens[token_position_idx + 5].type in (TT_INT, TT_STRING, TT_FLOAT):
                 return BinOpNode(List_index_node, tokens[token_position_idx + 4], NumberNode(tokens[token_position_idx + 5]))
             else:
                 return InvalidSyntaxError(
