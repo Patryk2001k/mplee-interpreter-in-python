@@ -58,6 +58,12 @@ class Parser:
         self.tok_idx += 1
         self.update_current_tok()
         return self.current_tok
+    
+    def multiple_advance(self, number):
+        for i in range(0, number):
+            self.tok_idx += 1
+            self.update_current_tok()   
+        return self.current_tok
 
     def reverse(self, amount=1):
         self.tok_idx -= amount
@@ -94,6 +100,7 @@ class Parser:
         statement = res.register(self.statement())
         if res.error:
             return res
+        
         statements.append(statement)
 
         more_statements = True
@@ -197,7 +204,6 @@ class Parser:
         node = res.register(
             self.bin_op(self.comp_expr, ((TT_KEYWORD, "and"), (TT_KEYWORD, "or")))
         )
-
         if res.error:
             return res.failure(
                 InvalidSyntaxError(
@@ -320,8 +326,17 @@ class Parser:
             res.register_advancement()
             self.advance()
             return res.success(StringNode(tok))
-
+        
         elif tok.type == TT_IDENTIFIER:
+            new_token_idx = self.tok_idx
+            save_token = tok
+            if self.tokens[new_token_idx + 1].type == TT_LSQUARE:
+                next_tokens = [self.tokens[new_token_idx + 1], self.tokens[new_token_idx + 2], self.tokens[new_token_idx + 3]]
+                if next_tokens[0].type == TT_LSQUARE and next_tokens[1].type == TT_INT and next_tokens[2].type == TT_RSQUARE:
+                    listres = self.list_index_pointer_expr(self.tokens, new_token_idx, save_token, next_tokens, res)
+                    if isinstance(listres, InvalidSyntaxError):
+                        return res.failure(listres)
+                    return res.success(listres)
             res.register_advancement()
             self.advance()
             return res.success(VarAccessNode(tok))
@@ -382,6 +397,33 @@ class Parser:
                 "Expected int, float, identifier, '+', '-', '(', '[', if', 'for', 'while', 'fun'",
             )
         )
+
+    def list_index_pointer_expr(self, tokens, token_position_idx, save_token, next_tokens, res):
+        res.register_advancement()
+        res.register_advancement()
+        res.register_advancement()
+        res.register_advancement()
+        self.advance()
+        self.advance()
+        self.advance()
+        self.advance()
+
+        List_index_node = ListIndexPointerNode(VarAccessNode(save_token), NumberNode(next_tokens[1]))
+        if tokens[token_position_idx + 4].type == TT_EQ:
+            res.register_advancement()
+            res.register_advancement()
+            self.advance()
+            self.advance()
+            if tokens[token_position_idx + 5].type == TT_INT:
+                return BinOpNode(List_index_node, tokens[token_position_idx + 4], NumberNode(tokens[token_position_idx + 5]))
+            else:
+                return InvalidSyntaxError(
+                    self.current_tok.pos_start,
+                    self.current_tok.pos_end,
+                    f"Expected '{TT_INT}'"
+                )
+        else:
+            return List_index_node
 
     def list_expr(self):
         res = ParseResult()

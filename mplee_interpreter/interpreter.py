@@ -443,11 +443,15 @@ class Interpreter:
         right = res.register(self.visit(node.right_node, context))
         if res.should_return():
             return res
-
         if node.op_tok.type == TT_PLUS:
             result, error = left.added_to(right)
         elif node.op_tok.type == TT_MINUS:
             result, error = left.subbed_by(right)
+        elif node.op_tok.type == TT_EQ:
+            if isinstance(node.left_node, ListIndexPointerNode):
+                var_list = self.visit(node.left_node.left_node, context)
+                second_number = self.visit(node.left_node.right_node, context)
+                result, error = var_list.value.change_by(right, second_number.value)
         elif node.op_tok.type == TT_MUL:
             result, error = left.multed_by(right)
         elif node.op_tok.type == TT_DIV:
@@ -665,6 +669,17 @@ class Interpreter:
 
     def visit_BreakNode(self, node, context):
         return RTResult().success_break()
+    
+    def visit_ListIndexPointerNode(self, node, context):
+        res = RTResult()
+        left = res.register(self.visit(node.left_node, context))
+        if res.should_return():
+            return res
+        right = res.register(self.visit(node.right_node, context))
+        if res.should_return():
+            return res
+        return res.success(left.elements[right.value])
+
 
 
 #######################################
@@ -705,10 +720,8 @@ def run(fn, text):
     # Generate AST
     parser = Parser(tokens)
     ast = parser.parse()
-    print(ast.node.element_nodes[0].body_node.element_nodes)
     if ast.error:
         return None, ast.error
-
     # Run program
     interpreter = Interpreter()
     context = Context("<program>")

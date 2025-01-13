@@ -85,7 +85,6 @@ class Lexer:
                 return [], IllegalCharError(pos_start, self.pos, "'" + char + "'")
 
         tokens.append(Token(TT_EOF, pos_start=self.pos))
-        print(tokens)
         return tokens, None
 
     def make_number(self):
@@ -199,7 +198,8 @@ class Lexer:
     def skip_comment(self):
         self.advance()
 
-        while self.current_char != "\n":
+        while self.current_char != "\n" and self.current_char is not None:
             self.advance()
 
-        self.advance()
+        if self.current_char == "\n":
+            self.advance() 
