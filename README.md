@@ -1,4 +1,4 @@
-# Mplee language interpreter written in python
+# mplee - Interpreter written in python
 
 **Contents**
 - [Installation](#Installation)
@@ -18,5 +18,27 @@ Ostatecznie w każdym folderze możemy utworzyć plik .mplee i stworzyć w nim j
 
 ## Opis
 
+mplee to język programowania stworzony na potrzeby edukacyjne. Osobiście chciałem się nauczyć jak tworzyć interpretery oraz jak działają tego typu programy. 
+
+**Cel projektu:** Głównym celem projektu było stworzenie języka który będzie prosty w interakcji oraz przedewszystkim będzie szybszy niż python.
+
+Zawartość języka przykłady:
+a) Zmienne:
+var a = 10
+
+b) Pętle:
+while a < 10: 
+  show(a)
+
+for i = 0 to 10 then
+  show(i)
+end
+
+c) Funkcje:
+func testf(par1):
+  show(par1)
+end
+
+d) 
 
 ## Dokumentacja
