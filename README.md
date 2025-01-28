@@ -3,7 +3,6 @@
 **Contents**
 - [Installation](#Installation)
 - [Opis](#Opis)
-- [Dokumentacja](#Dokumentacja)
 
 
 ## Installation
