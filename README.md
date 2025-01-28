@@ -22,23 +22,5 @@ mplee to język programowania stworzony na potrzeby edukacyjne. Osobiście chcia
 
 **Cel projektu:** Głównym celem projektu było stworzenie języka który będzie prosty w interakcji oraz przedewszystkim będzie szybszy niż python.
 
-Zawartość języka przykłady:
-a) Zmienne:
-var a = 10
+Przykłady językowe znajdują się w folderze documentation i w pliku grammar.txt 
 
-b) Pętle:
-while a < 10: 
-  show(a)
-
-for i = 0 to 10 then
-  show(i)
-end
-
-c) Funkcje:
-func testf(par1):
-  show(par1)
-end
-
-d) 
-
-## Dokumentacja
