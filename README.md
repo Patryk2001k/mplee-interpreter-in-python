@@ -1,25 +1,23 @@
-# mplee - Interpreter written in python
+# mplee - Python-written Interpreter
 
 **Contents**
-- [Installation](#Installation)
-- [Opis](#Opis)
-
+- [Installation](#installation)
+- [Description](#description)
 
 ## Installation
-Aby zainstalować interpreter u siebie należy:
-1. Ściągnąć .zip tego repozytorium
-2. Podpiąć ścieżkę do tego repozytorium w zmiennych środowiskowych PATH gdzie ścieżka ma prowadzić do tego folderu
-3. By uruchomić przykłądowy plik musimy uruchomić CMD i przejść do ścieżki głównej rozpakowanego zip-a
-4. Następnie w CMD wpisujemy "mplee example.mplee" i powinno pokazać nam posortowaną tablicę
-Ostatecznie w każdym folderze możemy utworzyć plik .mplee i stworzyć w nim jakiś program i wywołać go z poziomu danego folderu tak jak pliki pythona.
+To install the interpreter locally:
+1. Download the .zip of this repository
+2. Add the path to this repository to your system's PATH environment variable (point to the root folder)
+3. To run an example file, open CMD and navigate to the root folder of the unzipped repository
+4. In CMD, type `mplee example.mplee` - this should display a sorted array
+You can create .mplee files in any directory and execute them from their location, similar to Python files.
 
-**Ciekawostka: Interpreter mplee interpretuje też pliki pythona, jeśli uruchomimy mplee test.py to plik powinien zadziałać bezproblemu**
+**Fun Fact:** The mplee interpreter can also execute Python files! Try running `mplee test.py` and it should work seamlessly.
 
-## Opis
+## Description
 
-mplee to język programowania stworzony na potrzeby edukacyjne. Osobiście chciałem się nauczyć jak tworzyć interpretery oraz jak działają tego typu programy. 
+mplee is a programming language created for educational purposes. The personal goal was to learn how interpreters work and understand the internals of such systems.
 
-**Cel projektu:** Głównym celem projektu było stworzenie języka który będzie prosty w interakcji oraz przedewszystkim będzie szybszy niż python.
+**Project Goal:** The main objective was to create a language that's simple to interact with and notably faster than Python.
 
-Przykłady językowe znajdują się w folderze documentation i w pliku grammar.txt 
-
+Language examples can be found in the `documentation` folder and the `grammar.txt` file.
